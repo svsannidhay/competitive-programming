@@ -1,7 +1,7 @@
 //https://www.hackerearth.com/challenges/competitive/june-circuits-19/algorithm/determine-the-winner-june-circuits-2019-f4713f29/
 //A basic question from game theory
 //smaterial links
-//https://www.youtube.com/watch?v=HdRgnzRk56Q   (day 3 lecture 3 codechef)  //good one
+//https://www.youtube.com/watch?v=HdRgnzRk56Q   (day 3 lecture 3 codechef)  //good one //(medium level)
 // solution
 #include<iostream>
 using namespace std;
