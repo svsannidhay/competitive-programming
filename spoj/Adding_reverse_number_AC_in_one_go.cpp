@@ -1,3 +1,6 @@
+//problem statement:-   https://www.spoj.com/problems/ADDREV/
+//(medium one AC in one attempt)
+
 #include<iostream>
 #include<math.h>
 using namespace std;
