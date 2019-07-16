@@ -98,6 +98,19 @@ void mapDemo(){
     }
     cout<<cnt['a']<<" "<<cnt['z']<<endl;
 }
+void example(){
+    set< pair< int ,int > > S;
+    S.insert({2,3});
+    S.insert({10,20});
+    S.insert({30,400});
+    S.insert({401,450});
+    int point = 50;
+    auto it = S.upper_bound({point, INT_MAX});
+    it--;
+    pair<int,int> current = *it;
+    cout<<current.first<<" "<<current.second;
+    
+}
 int main(){
     mapDemo();
     //setDemo();
