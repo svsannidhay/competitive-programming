@@ -16,7 +16,7 @@ int main(){
     present = binary_search( A.begin() , A.end() , 4 );    //false
     cout<<present<<endl;
     
-    A.push_back(100);
+    A.push_back(100);                                                                 
     present = binary_search( A.begin() ,A.end() , 100);
     cout<<present<<endl;
     A.push_back(100);
@@ -26,7 +26,7 @@ int main(){
     A.push_back(123);
     
     /*vector<int>::iterator*/auto it = lower_bound(A.begin(),A.end(),100);  //>= 
-    /*vector<int>::iterator*/auto it2 = upper_bound(A.begin(),A.end(),100); //>
+    /*vector<int>::iterator*/auto it2 = upper_bound(A.begin(),A.end(),100); //>     //upper_bound and lower_bound shows results of the sorted array
     cout<<*it<<" "<<*it2<<endl;
     cout<< it2 - it<<endl;
     
