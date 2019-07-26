@@ -9,3 +9,32 @@ int main()
     cin.tie(NULL);
     return 0;
 }
+ex:- problem statement:- https://www.hackerearth.com/problem/algorithm/hidden-number/
+#include<iostream>
+#define sws ios_base::sync_with_stdio(false); cin.tie(NULL)
+using namespace std;
+int main(){
+    sws;
+    int t;
+    cin>>t;
+    for(int i=1;i<=t;i++){
+        int n;
+        cin>>n;
+        int arr[100000];
+        for(int i=1;i<=100000;i++){
+            arr[i] = -1;
+        }
+        for(int i=1;i<=n;i++){
+            int x;
+            cin>>x;
+            arr[x]++;
+        }
+        for(int i=1;i<=100000;i++){
+            if(arr[i]==0){
+                cout<<i;
+                cout<<"\n";
+                break;
+            }
+        }
+    }
+}
