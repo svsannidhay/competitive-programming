@@ -1,10 +1,10 @@
-//problem statement:- https://www.codechef.com/BIT22019/problems/MATHL
-// PARTIALLY SOLVED  TLE IN SUBTASK 2
-/*
-Needed a better DP approach
-*/
-//tags - easy-medium
+#problem statement:- https://www.codechef.com/BIT22019/problems/MATHL
+# PARTIALLY SOLVED  TLE IN SUBTASK 2
 
+#Needed a better DP approach
+
+#tags - easy-medium
+#PYTHON 
 from sys import stdin, stdout  
 #t = int(input())
  
