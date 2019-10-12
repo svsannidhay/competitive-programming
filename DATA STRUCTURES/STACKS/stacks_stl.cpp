@@ -1,19 +1,4 @@
-Skip to content
-Search or jump to…
 
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@svsannidhay 
-0
-00svsannidhay/competitive-programming
- Code Issues 3 Pull requests 0 Projects 0 Wiki Security Insights Settings
-competitive-programming/c++ stl/stack_stl.cpp
-@svsannidhay svsannidhay Create stack_stl.cpp
-d5dc0f3 14 minutes ago
-101 lines (85 sloc)  1.93 KB
   
 #include <iostream> 
 #include <stack> 
@@ -115,15 +100,3 @@ int main() {
   } 
   return 0; 
 } 
-© 2019 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
