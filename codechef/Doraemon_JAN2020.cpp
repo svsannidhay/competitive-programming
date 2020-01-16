@@ -1,4 +1,30 @@
 //Problem statement :- https://www.codechef.com/JAN20B/problems/CHFDORA/
+/* 
+   Brute Force Algorithm :- 
+    -> As you need to Check always Around the central element . 
+    -> You Just traverse each of the Element of the matrix And find     the number of such Pair of Palindromic subRows and subcolumns
+    -> FOR FINDIND THE NUMBER OF PALINDROMIC PAIRS 
+    ->Start from the central element we will expand till the maximum    possible Indexes
+      and Checking row[i][j-k] = row [i][j+k] && 
+      col[i-k][j] = col[i+k][j]
+      and if this condition fails Then we can clearly say that None of the left out outer pairs statisfies the condition to be palindromic so we can break Whenever any of these conditions fails
+      Time Complexity :-
+           Complexity of traverse matrix = O(n*m)
+           Complexity to find  The No of pairs (worst Case)= O(min(n,m))
+           => Total complexity = O(n*m*min(n,m))
+           Assuming n <= m  then 
+           min(n,m) = n = sqrt(n)*sqrt(n) <= sqrt(n)*sqrt(m)
+           => min(n,m) = (n*m)^(1/2)
+         => Complexity Of Brute Force approach is O(nm^(1.5))
+         Now seeing the constraints For The given probelem Brute force is fast enough to give You Ac easily 
+    There is another  Efficent Algorithm Which can be used to solve The given Problem in O(nm)
+    Manacher's Algorithm :-
+       // Will Address it soon enough 
+       Complexity :- O(2*n*m)
+
+
+*/
+//Brute Force Implementation:-
 #include<iostream>
 #include<vector>
 #include<algorithm>
@@ -79,3 +105,5 @@ int main(){
         cout<<countPairs<<"\n";
     }
 }
+// Manachers's Algorithm impllimentation :- // Coming soon 
+
