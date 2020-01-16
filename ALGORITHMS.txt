@@ -1,0 +1,11 @@
+---> For palindromes:-
+     Find the Longest Palindromic Substring : -
+          ->Manacher's Algorihtm 
+                Complexity:- (2*n)
+                
+                
+                
+---> For Prime Numbers:-
+    TO Find all the prime numbers between a given range 
+          -> Sieve and Segmented sieve's Algorithm
+                Complexity ;_ 
