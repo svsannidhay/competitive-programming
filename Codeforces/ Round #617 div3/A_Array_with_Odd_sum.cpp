@@ -1,7 +1,9 @@
 //Problem statement:- https://codeforces.com/contest/1296/problem/A
 //Ad hoc
 /*
-    Firstly, if the array already has an odd sum, the answer is "YES". Otherwise, we need to change the parity of the sum, so we need to change the parity of some number. We can do in only when we have at least one even number and at least one odd number. Otherwise, the answer is "NO".
+    Firstly, if the array already has an odd sum, the answer is "YES". Otherwise, we need to change the parity of
+    the sum, so we need to change the parity of some number. We can do in only when we have at least one even number 
+    and at least one odd number. Otherwise, the answer is "NO".
     -----Sannidhay Vashal
     ----NIT SRINAGAR
 */
