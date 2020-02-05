@@ -1,7 +1,10 @@
 //Problem statement:- https://codeforces.com/contest/1296/problem/B
 //Ad hoc
 /*
- Let's do the following greedy solution: it is obvious that when we buy food that costs exactly 10𝑘 for 𝑘≥1, we don't lose any burles because of rounding. Let's take the maximum power of 10 that is not greater than 𝑠 (let it be 10𝑐), buy food that costs 10𝑐 (and add this number to the answer) and add 10𝑐−1 to 𝑠. Apply this process until 𝑠<10 and then add 𝑠 to the answer.
+ Let's do the following greedy solution: it is obvious that when we buy food that costs exactly 10𝑘 for 𝑘≥1, 
+ we don't lose any burles because of rounding. Let's take the maximum power of 10 that is not greater than 𝑠 (let it be 10𝑐),
+ buy food that costs 10𝑐 (and add this number to the answer) and add 10𝑐−1 to 𝑠. Apply this process until 𝑠<10 and then 
+ add 𝑠 to the answer.
 
     Time complexity: 𝑂(log𝑠) per test case.
 
