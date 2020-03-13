@@ -126,7 +126,21 @@ void preOrderTraversal(struct BstNode * root){    //root - left - right
   }
 }
 
+void postOrderTraversal(struct BstNode * root){
+  if(root != NULL){
+    postOrderTraversal(root->left);
+    postOrderTraversal(root->right);
+    cout(root->data);cout("\n");
+  }
+}
 
+void inOrdertraversal(struct BstNode * root){
+  if(root  != NULL){
+    inOrdertraversal(root->left);
+    cout(root->data);cout("\n");
+    inOrdertraversal(root->right);
+  }
+}
 
 int main(){
   struct BstNode *root = NULL;
@@ -138,6 +152,10 @@ int main(){
   insertNode(root,60);
   insertNode(root,80);
   preOrderTraversal(root);
+  cout("\n\n");
+  postOrderTraversal(root);
+  cout("\n\n");
+  inOrdertraversal(root);
   return 0;
 }
 
