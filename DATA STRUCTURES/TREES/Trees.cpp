@@ -21,16 +21,17 @@
   -->PROPERTIES:-
 
    ->Tree can be called a recursive data structure
-  ->If tree conatins N nodes then There must be      N-1 edges.
-  ->Depth of x = length of path from Root to x or                 simply no of edges in path from                  root to x.
-  ->Hegiht of x = No of edges in longest path from                 x to leaf.
+  ->If tree conatins N nodes then There must be N-1 edges.
+  ->Depth of x = length of path from Root to x or simply no of edges in path from root to x.
+  ->Hegiht of x = No of edges in longest path from x to leaf.
   ->heigt of tree = height of root node.
+  ->height of leaf nodes = 0
 
   -> Basic way of implementing  a tree is using Node and links created recursively. 
 
 
 
-  -->Binary Trees :- Each node can have at most 2                     children.
+  -->Binary Trees :- Each node can have at most 2 children.
         root
        /    \ 
       /      \
@@ -39,9 +40,9 @@
     /   \   /   \
    /     \ /     \
   
-  -->Strict/Proper binary Tree :-  Each node can          have either 2 or 0 children.
+  -->Strict/Proper binary Tree :-  Each node can have either 2 or 0 children.
   
-  -->Complete Binary tree:- All levels Except possibly the last are completely filled and all the nodes are as left as possible.
+  -->Complete Binary tree:- All levels Except possibly the last are completely filled and all the nodes are as far left as possible.
 
   -->Max No of nodes at level i = 2^i //       
         Considering root node at level zero.
@@ -59,5 +60,84 @@
     -->Implementing a Binary  tree:-
         a. Dynamically created nodes
         b. arrays
-            
+
+
+ ---------Binary Search Tree ---------
+-> A binary tree in which for each node,value of all the nodes in left
+subtree is lesser and value of all the nodes in right subtree is greater.
 */
+
+//Implementation of binary search tree
+
+#include<iostream>
+#include<stdio.h>
+#include<vector>
+#include<algorithm>
+#include<map>
+#include<stack>
+#include<queue>
+
+#define cinll(i) ll i;cin>>i;
+#define cout(i) cout<<i;
+#define vect1(x) vector<ll> x;x.push_back(0);
+#define vect(x) vector<ll> x
+#define fio ios_base::sync_with_stdio(false);ciin.tie(NULL)
+#define ll long long int
+#define ull unisgned long long int
+
+
+using namespace std; 
+
+struct BstNode{
+  ll data;
+  struct BstNode *left;
+  struct BstNode *right;
+};
+
+struct BstNode * getNewNode(ll data){               //Return a Node with given data as an data element
+  struct BstNode *tempNode = new BstNode;            
+  tempNode->data = data;
+  tempNode->left = tempNode->right = NULL;
+  return tempNode ;
+}
+
+struct BstNode * insertNode(struct BstNode *node, ll data){
+  if(node == NULL){
+    struct BstNode *currNode ;
+    currNode = getNewNode(data);              //Complexity O(log n)
+    return currNode;
+  }
+  else{
+    if(data <= node->data){
+        node->left = insertNode(node->left,data);
+    }
+    else{
+      node->right = insertNode(node->right,data);
+    }
+  }
+  return node;
+}
+
+void preOrderTraversal(struct BstNode * root){    //root - left - right
+  if(root != NULL){
+    cout(root->data);cout("\n");           //print root node
+    preOrderTraversal(root->left);   //go to left subtree
+    preOrderTraversal(root->right);  // go to right subtree
+  }
+}
+
+
+
+int main(){
+  struct BstNode *root = NULL;
+  root = insertNode(root,50);
+  insertNode(root,30);
+  insertNode(root,20);
+  insertNode(root,40);
+  insertNode(root,70);
+  insertNode(root,60);
+  insertNode(root,80);
+  preOrderTraversal(root);
+  return 0;
+}
+
