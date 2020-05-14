@@ -44,6 +44,21 @@ node *getnewnode(ll data){
     return tmp;
 }
 
+void preOrder_recursive(node * root){
+    stack<node *> s;
+    while(root!=NULL||!s.empty()){
+        if(root!=NULL){
+            cout<<root->data<<" ";
+            s.push(root);
+            root = root->left;
+        }else{
+            root = s.top();
+            s.pop();
+            root = root->right;
+        }
+    }
+}
+
 void inOrder(node *root){
     if(root!=NULL){
         inOrder(root->left);
@@ -79,5 +94,6 @@ int main(){
             q.push(rightnode);
         }
     }
+    preOrder_recursive(root);
     return 0;
 } 
