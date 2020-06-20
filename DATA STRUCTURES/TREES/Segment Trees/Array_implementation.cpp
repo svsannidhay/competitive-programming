@@ -1,7 +1,7 @@
 /*
     Segment Tree :- is a complete binary tree in which each node store some information
                     about a particular range of elements
-        Particularly Used for problems involving quaries and Updations
+        Particularly Used for problems involving queries and Updations
         Both quaries and upadtations can be completed in O(logN) time.
 
     based upon Divide and conquer
