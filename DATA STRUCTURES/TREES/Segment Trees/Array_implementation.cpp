@@ -37,12 +37,14 @@
 using  namespace std;
 
 void buildTree(ll* arr,ll* segTree,ll start,ll end,ll treeNode){
-    ll mid = (start + end)/2;
-
+    
     if(start == end){
         segTree[treeNode] = arr[start];
         return;
     }
+    
+    ll mid = (start + end)/2;
+    
     buildTree(arr,segTree,start,mid,2*treeNode);
     buildTree(arr,segTree,(mid+1),end,((2*treeNode)+1));
 
