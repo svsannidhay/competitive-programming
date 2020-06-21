@@ -1,23 +1,35 @@
-// #pragma GCC optimize "trapv"
-// #define _GLIBCXX_DEBUG
-#include <bits/stdc++.h>
-using namespace std;
-typedef long long ll;
-typedef unsigned long long ull;
-typedef long double ld;
-const ll inf=1e18;
-const ll M=1e9+7;
-#define fastio ios::sync_with_stdio(false);
-#define el <<"\n"
-#define init(arr,val) memset(arr,val,sizeof(arr))
-#define vi vector<int> 
-#define vl vector<ll> 
-#define vs vector<string> 
-#define vp vector < pair <ll,ll> > 
-#define pb push_back
-#define eb emplace_back
-string to_string(ll x){stringstream ss; ss<<x; return ss.str();}
-ll to_integer(string s){stringstream ss(s); ll x; ss>>x; return x;}
+/*
+	Solution by:- 
+	--------------Sannidhay Vashal
+	----------------NIT SRINAGAR
+ 
+*/
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<stack>
+#include<queue>
+#include<map>
+#include<math.h>
+#include<climits>
+#include<set>
+ 
+#define fio ios_base::sync_with_stdio(false);cin.tie(NULL)
+#define ll            long long int
+#define ull           unsigned long long int
+#define cinll(x)      ll x;cin>>x;
+#define cini(x)       int x;cin>>x;
+#define cins(x)       string x;cin>>x;
+#define vect(x)       vector<ll> x;
+#define vect1(x)      vector<ll> x;x.push_back(0);
+#define pb(x)         push_back(x)
+#define mp(x,y)       make_pair(x,y)
+#define MAX           1e18
+#define MIN           -1e18
+#define MOD           1000000007
+#define vectdef(x,size,val) vector<ll> x;for(ll i=0;i<size;i++){x.push_back(val);}
+#define vectdef1(x,size,val) vector<ll> x;for(ll i=0;i<=size;i++){x.push_back(val);}
+
 
 using std::string;
 
@@ -90,13 +102,4 @@ defineOutFor(long long)
 #define cout _io_
 #define cin _io_
 } _io_;
- 
-int main() {
-    fastio
-    int t;
-    cin>>t;
-    while(t--){
-        
-    }
-    return 0;
-}
+using namespace std;
