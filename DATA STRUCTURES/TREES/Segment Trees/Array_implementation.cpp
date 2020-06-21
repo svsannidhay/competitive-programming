@@ -38,27 +38,20 @@ using  namespace std;
 
 void buildTree(ll* arr,ll* segTree,ll start,ll end,ll treeNode){
     ll mid = (start + end)/2;
-
     if(start == end){
         segTree[treeNode] = arr[start];
         return;
     }
     buildTree(arr,segTree,start,mid,2*treeNode);
     buildTree(arr,segTree,(mid+1),end,((2*treeNode)+1));
-
     segTree[treeNode] = segTree[2*treeNode] + segTree[2*treeNode +1];
-
 }
 
-void build(int node, int start, int end)
-{
-    if(start == end)
-    {
-        // Leaf node will have a single element
+void build(int node, int start, int end){
+    if(start == end){
         tree[node] = A[start];
     }
-    else
-    {
+    else{
         int mid = (start + end) / 2;
         // Recurse on the left child
         build(2*node, start, mid);
@@ -69,24 +62,19 @@ void build(int node, int start, int end)
     }
 }
 
-void update(int node, int start, int end, int idx, int val)
-{
-    if(start == end)
-    {
+void update(int node, int start, int end, int idx, int val){
+    if(start == end){
         // Leaf node
         A[idx] += val;
         tree[node] += val;
     }
-    else
-    {
+    else{
         int mid = (start + end) / 2;
-        if(start <= idx and idx <= mid)
-        {
+        if(start <= idx and idx <= mid){
             // If idx is in the left child, recurse on the left child
             update(2*node, start, mid, idx, val);
         }
-        else
-        {
+        else{
             // if idx is in the right child, recurse on the right child
             update(2*node+1, mid+1, end, idx, val);
         }
@@ -95,15 +83,12 @@ void update(int node, int start, int end, int idx, int val)
     }
 }
 
-nt query(int node, int start, int end, int l, int r)
-{
-    if(r < start or end < l)
-    {
+int query(int node, int start, int end, int l, int r){
+    if(r < start or end < l){
         // range represented by a node is completely outside the given range
         return 0;
     }
-    if(l <= start and end <= r)
-    {
+    if(l <= start and end <= r){
         // range represented by a node is completely inside the given range
         return tree[node];
     }
