@@ -1,32 +1,39 @@
 /*
     //Convex hull using jarvis march  :-
-    Explaination :- 
+    Explaination :-
 
-    Step1 :- Select the Left most point left using linear search
-    Step2 :-
+    utility fucntion :- 
+        Orientation checking using 2d Cross product:- 
+        https://www.youtube.com/watch?v=KNe9XRCZkVU&t=3991s
+          b(x2,y2)
+          /       
+         /      
+        /
+       a - -- - --- c(x3,y3)    
+     (x1,y1)
+
+     Shifting points to origin first
+
+            b(x2-x1,y2-y1)
+          /       
+         /      
+        /
+       a - -- - --- c(x3-x1,y3-y1)     
+     0,0
+     ac*ab = (x3-x1)*(y2-y1) - (x2-x1)*(y3-y1)
+
+     -> ac*ab > 0 => point c is more left w.r.t (0,0) than b  (clockwise)  --> 1
+     -> ac*ab = 0 => point a , b , c are collinear  --> 0
+     -> ac*ab < 0 => point c is more right w.r.t (0,0) than b (counter clockwise) -->2
 
 
+    Convex Hull :- Given a set of points in the plane. 
+    the convex hull of the set is the smallest convex polygon that contains all the points of it.
 
-    utility fucntion :-
-        checking orientation :- 
-        
-                . r
-                 \
-                  \ a
-                   \
-     p . __ __ __ _ .q
-            b
 
-        2D cross product: a ^ b = XaYb - YaXb = |a||b|sin α.
+    Jarvis March Algorithm (Gift wrapping Algorithm):- 
 
-        Xa = r.x - q.x  ; Yb = q.y - p.y
-        Ya = r.y - q.y  ; Xb = q.x - p.x
-
-        => a ^ b = (r.x - q.x) * (q.y - p.y) - (r.y - q.y) * (q.x - p.x)
-
-    - if a ^ b < 0, then b points to the left side of pq p to q direction ( i.e counter clockwise)
-    - if a ^ b = 0, then r lies on b, so it's collinear with p and q;
-    - if a ^ b > 0, then b points to the right side of d (as in the picture).
+    Step1 :-  Initialize p as leftmost point
 
 
     Time Complexity :- O(n * no of points on hull) 
@@ -63,12 +70,41 @@
 #define INF 10000 
 
 using namespace std;
-
-ll orientation(pair<ll,ll> p,pair<ll,ll> q,pair<ll,ll> r){
-    ll val = (q.second - p.second) * ( )
+// b w.r.t ac 
+ll orientation(pair<ll,ll> a,pair<ll,ll> b,pair<ll,ll> c){
+    ll val = (c.first-a.first)*(b.second-a.second) - (b.first-a.first)*(c.second-a.second);  // 2 D Cross product
+    if(val == 0) return 0; //a,b,c are on same line
+    if(val > 0) return 1;  //b is left to ac (clockwise)
+    return 2;  //b is right to ac (counter-cw)
 }
 
-int main(){
+vector< pair<ll,ll> > convexHull(vector< pair<ll,ll> > points,ll n){
+    if(n<3) return; 
 
+    vector< pair<ll,ll> > hull;
+    
+    ll leftmost =0;
+    for(ll i=1;i<n;i++){
+        if(points[i].first<points[leftmost].first){
+            leftmost = i;
+        }
+    }
+
+    ll current = leftmost;
+    ll next;
+    do{
+        hull.pb(points[current]);
+
+        
+    }while(current != leftmost);
+
+    for(ll i=0;i<hull.size();i++){
+        cout<<hull[i].first<<","<<hull[i].second<<" ";
+    }
+}
+
+
+int main(){
+    vector< pair<ll,ll> > points()      
     return 0;
 }

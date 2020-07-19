@@ -38,7 +38,7 @@ ll fastexponential(ll base,ll exp,ll mod){
         if(exp%2==0){
             return ( (r%mod) * (r%mod) )%mod;
         }else{
-            return ( (r%mod) * base * (r%mod) )%mod;
+            return ( ( ( (r%mod)*(r%mod) )%mod ) * (base%mod)  )%mod;
         }
     }
 }

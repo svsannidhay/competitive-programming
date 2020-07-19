@@ -54,7 +54,7 @@ struct custom_compare{
 };
 //Greedy approach
 // Prints shortest paths distance from src to all other vertices 
-pair< vector<ll>,vector<ll> > spDijkstra(vector< pair<ll,ll> > adj[],ll v,ll start,){  //add ll end is you want shotest path from s to e only
+pair< vector<ll>,vector<ll> > spDijkstra(vector< pair<ll,ll> > adj[],ll v,ll start){  //add ll end is you want shotest path from s to e only
     
     priority_queue < pair<ll,ll>, vector< pair<ll,ll> > , custom_compare > pq;  //min heap priority queue
     // priority_queue< iPair, vector <iPair> , greater<iPair> > pq;  // can be written like this too

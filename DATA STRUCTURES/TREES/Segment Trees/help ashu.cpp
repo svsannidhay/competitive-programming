@@ -1,4 +1,3 @@
-//https://www.hackerearth.com/practice/data-structures/advanced-data-structures/fenwick-binary-indexed-trees/practice-problems/algorithm/help-ashu-1/?layout=old
 /*
 	Solution by:- 
 	--------------Sannidhay Vashal
@@ -31,9 +30,9 @@
 #define MOD           1000000007
 #define vectdef(x,size,val) vector<ll> x;for(ll i=0;i<size;i++){x.push_back(val);}
 #define vectdef1(x,size,val) vector<ll> x;for(ll i=0;i<=size;i++){x.push_back(val);}
-
+ 
 using namespace std;
-
+ 
 void buildSegTree(vector<ll> &arr,vector< pair<ll,ll> > &segTree,ll start,ll end,ll treenode){
 	if(start==end){
 		if(arr[start]%2==0){
@@ -49,7 +48,7 @@ void buildSegTree(vector<ll> &arr,vector< pair<ll,ll> > &segTree,ll start,ll end
 	segTree[treenode].first = segTree[2*treenode].first + segTree[2*treenode+1].first;
 	segTree[treenode].second = segTree[2*treenode].second+ segTree[2*treenode+1].second;
 }
-
+ 
 ll query_eve(vector< pair<ll,ll> > &segTree,ll treenode,ll start ,ll end,ll l,ll r){
 	if(r<start||l>end){
 		return 0;
@@ -62,7 +61,7 @@ ll query_eve(vector< pair<ll,ll> > &segTree,ll treenode,ll start ,ll end,ll l,ll
 	ll right = query_eve(segTree,2*treenode+1,mid+1,end,l,r);
 	return (left + right);
 }
-
+ 
 ll query_odd(vector< pair<ll,ll> > &segTree,ll treenode,ll start ,ll end,ll l,ll r){
 	if(r<start||l>end){
 		return 0;
@@ -75,7 +74,7 @@ ll query_odd(vector< pair<ll,ll> > &segTree,ll treenode,ll start ,ll end,ll l,ll
 	ll right = query_odd(segTree,2*treenode+1,mid+1,end,l,r);
 	return (left + right);
 }
-
+ 
 void update(vector< pair<ll,ll> > &segTree,ll treenode,ll start,ll end,ll idx,ll val){
 	if(start==end){
 		if(val%2==0){
@@ -94,7 +93,7 @@ void update(vector< pair<ll,ll> > &segTree,ll treenode,ll start,ll end,ll idx,ll
 	segTree[treenode].first = segTree[2*treenode].first + segTree[2*treenode+1].first;
 	segTree[treenode].second = segTree[2*treenode].second+ segTree[2*treenode+1].second;
 }
-
+ 
 int main(){
 	fio;
 	cinll(n);

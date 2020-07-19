@@ -32,13 +32,45 @@ void create_sieve(vector<ll> &sieve,ll s,ll e){
         tmp.pb(i);
     }
     for(ll i=2;i<=sqrt(e);i++){
-        for(ll j=0;j<tmp.size();j++){
-            if(tmp[j]>=i*i&&tmp[j]%i==0){
-                tmp[j] = -1;
+        if(tmp[i-s]!=-1){  //This will give segmentation fault if s>1 so 
+            cout<<i<<" ";  //this is only to find primes btw 1 -> n
+            for(ll j=0;j<tmp.size();j++){
+                if(tmp[j]>=i*i&&tmp[j]%i==0){
+                    tmp[j] = -1;
+                }
             }
         }
     }
     for(ll i=0;i<tmp.size();i++){
+        if(tmp[i]!=-1){
+            sieve.pb(tmp[i]);
+        }
+    }
+}
+
+//Time complexity : O(n*log(log(n)))
+//------------------------------------------------OPTIMISED SIEVE OF ERATOSTHENES 
+void create_sieve_optimised(vector<ll> &spfi,vector<ll> &sieve,ll e){
+    vector<ll> tmp;
+    for(ll i=0;i<=e;i++){
+        tmp.pb(i);
+        spfi.pb(i);
+    }
+    for(ll i=2;i<=sqrt(e);i++){
+        if(tmp[i]!=-1){
+            ll currprime = i;
+            ll mul = 2;
+            while(currprime*mul<=e){
+                ll index = currprime*mul;
+                if(tmp[index]%currprime==0){
+                    tmp[index] = -1;
+                    spfi[index] = currprime;
+                }
+                mul++;
+            }
+        }
+    }
+    for(ll i=2;i<tmp.size();i++){
         if(tmp[i]!=-1){
             sieve.pb(tmp[i]);
         }
