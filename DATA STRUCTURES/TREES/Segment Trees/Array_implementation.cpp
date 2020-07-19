@@ -1,7 +1,7 @@
 /*
     Segment Tree :- is a complete binary tree in which each node store some information
                     about a particular range of elements
-        Particularly Used for problems involving quaries and Updations
+        Particularly Used for problems involving queries and Updations
         Both quaries and upadtations can be completed in O(logN) time.
 
     based upon Divide and conquer
@@ -37,11 +37,13 @@
 using  namespace std;
 
 void buildTree(ll* arr,ll* segTree,ll start,ll end,ll treeNode){
-    ll mid = (start + end)/2;
     if(start == end){
         segTree[treeNode] = arr[start];
         return;
     }
+    
+    ll mid = (start + end)/2;
+    
     buildTree(arr,segTree,start,mid,2*treeNode);
     buildTree(arr,segTree,(mid+1),end,((2*treeNode)+1));
     segTree[treeNode] = segTree[2*treeNode] + segTree[2*treeNode +1];
