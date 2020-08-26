@@ -144,6 +144,16 @@ void inOrdertraversal(struct BstNode * root){
   }
 }
 
+ll depth(struct BstNode * root){
+  if(root==NULL){
+    return 0;
+  }
+  ll dleft = depth(root->left);
+  ll dright = depth(root->right);
+  return max(dleft,dright)+1;
+}
+
+
 int main(){
   struct BstNode *root = NULL;
   root = insertNode(root,50);
@@ -164,92 +174,92 @@ int main(){
 
 //sample tutorail problem link :-https://www.hackerearth.com/practice/data-structures/trees/binary-search-tree/tutorial/
 
-#include<iostream>
-#include<vector>
-#include<map>
-#include<stack>
-#include<queue>
-#include<algorithm>
-#include<math.h>
+// #include<iostream>
+// #include<vector>
+// #include<map>
+// #include<stack>
+// #include<queue>
+// #include<algorithm>
+// #include<math.h>
 
-#define fio ios_base::sync_with_stdio(false);cin.tie(NULL)
-#define ull unsigned long long int 
-#define ll long long int
-#define MOD 1000000007
-#define cinll(i) ll i;cin>>i;
-#define cout(i) cout<<i;
-#define pb(x) push_back(x);
-#define vect(x) vector<ll> x;
-#define vect1(x) vector<ll> x; x.pb(0);
+// #define fio ios_base::sync_with_stdio(false);cin.tie(NULL)
+// #define ull unsigned long long int 
+// #define ll long long int
+// #define MOD 1000000007
+// #define cinll(i) ll i;cin>>i;
+// #define cout(i) cout<<i;
+// #define pb(x) push_back(x);
+// #define vect(x) vector<ll> x;
+// #define vect1(x) vector<ll> x; x.pb(0);
 
-using namespace std;
+// using namespace std;
 
-struct BstNode{
-	ll data;
-	struct BstNode *left;
-	struct BstNode *right;
-};
-map< ll,BstNode *> cache;
-struct BstNode *getNewNode(ll data){
-	struct BstNode * temp = new BstNode;
-	temp->data = data;
-	temp->right = temp->left = NULL;
-	return temp;
-}
+// struct BstNode{
+// 	ll data;
+// 	struct BstNode *left;
+// 	struct BstNode *right;
+// };
+// map< ll,BstNode *> cache;
+// struct BstNode *getNewNode(ll data){
+// 	struct BstNode * temp = new BstNode;
+// 	temp->data = data;
+// 	temp->right = temp->left = NULL;
+// 	return temp;
+// }
 
-struct BstNode * insertNode(struct BstNode * node,ll data){
-	if(node == NULL){
-		struct BstNode * currNode = getNewNode(data);
-		cache.insert(pair<ll,struct BstNode *>(currNode->data,currNode));	
-		return currNode;
-	}
-	else{
-		if(data <= node->data){
-			node->left = insertNode(node->left,data);
-		}
-		else{
-			node->right = insertNode(node->right,data);
-		}
-	}
-	return node;	
-}
+// struct BstNode * insertNode(struct BstNode * node,ll data){
+// 	if(node == NULL){
+// 		struct BstNode * currNode = getNewNode(data);
+// 		cache.insert(pair<ll,struct BstNode *>(currNode->data,currNode));	
+// 		return currNode;
+// 	}
+// 	else{
+// 		if(data <= node->data){
+// 			node->left = insertNode(node->left,data);
+// 		}
+// 		else{
+// 			node->right = insertNode(node->right,data);
+// 		}
+// 	}
+// 	return node;	
+// }
 
-void preOrderTraversal(struct BstNode * root){
-	if(root != NULL){
-		cout(root->data);cout("\n");
-		preOrderTraversal(root->left);
-		preOrderTraversal(root->right);
-	}
-}
+// void preOrderTraversal(struct BstNode * root){
+// 	if(root != NULL){
+// 		cout(root->data);cout("\n");
+// 		preOrderTraversal(root->left);
+// 		preOrderTraversal(root->right);
+// 	}
+// }
 
-int main(){
-	cinll(n);
-	vect(sieve);
-	struct BstNode * root = NULL;
-	struct BstNode * customRoot = NULL;
-	for(ll i=0;i<n;i++){
-		cinll(x);
-		sieve.pb(x);
-	}
-	cinll(q);
-	root = insertNode(root,sieve[0]);
-	for(auto it = sieve.begin()+1;it != sieve.end();it++){
-			insertNode(root,*it);
-	}
+// int main(){
+// 	cinll(n);
+// 	vect(sieve);
+// 	struct BstNode * root = NULL;
+// 	struct BstNode * customRoot = NULL;
+// 	for(ll i=0;i<n;i++){
+// 		cinll(x);
+// 		sieve.pb(x);
+// 	}
+// 	cinll(q);
+// 	root = insertNode(root,sieve[0]);
+// 	for(auto it = sieve.begin()+1;it != sieve.end();it++){
+// 			insertNode(root,*it);
+// 	}
 	
 	
-	map<ll,BstNode *>::iterator it;
-	it = cache.find(q);
-	customRoot = it->second;
-	/*
-	for(it = cache.begin();it!= cache.end();it++){
-		if(it->first == q){
-			customRoot = it->second;
-			//cout<<customRoot->data;
-		}
-		//cout<<it->first<<" ";  
-	}
-	*/
-	preOrderTraversal(customRoot);
-	return 0;
-}
+// 	map<ll,BstNode *>::iterator it;
+// 	it = cache.find(q);
+// 	customRoot = it->second;
+// 	/*
+// 	for(it = cache.begin();it!= cache.end();it++){
+// 		if(it->first == q){
+// 			customRoot = it->second;
+// 			//cout<<customRoot->data;
+// 		}
+// 		//cout<<it->first<<" ";  
+// 	}
+// 	*/
+// 	preOrderTraversal(customRoot);
+// 	return 0;
+// }

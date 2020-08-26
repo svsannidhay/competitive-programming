@@ -15,6 +15,8 @@
 #include<set>
 #include<chrono>
 #include<unordered_map>
+#include<ext/pb_ds/assoc_container.hpp>
+#include<ext/pb_ds/tree_policy.hpp>
 
 #define fio ios_base::sync_with_stdio(false);cin.tie(NULL)
 #define ll            long long int
@@ -106,7 +108,22 @@ defineOutFor(long long)
 } _io_;
 
 using namespace std;
+using namespace __gnu_pbds;
 
+//declaration of pbds
+typedef tree<
+	int, //key/val type
+	null_type, 
+	less<int>, //comparator
+	rb_tree_tag, //red black tree
+	tree_order_statistics_node_update
+>pbds;
+/*
+for(int i=0; i<st.size(); i++){
+		cout<<*st.find_by_order(i)<<" ";
+	}
+	cout<<st.order_of_key(6);
+*/
 //Safe_hashing for minimising collisions 
 //https://codeforces.com/blog/entry/62393
 struct custom_hash {
