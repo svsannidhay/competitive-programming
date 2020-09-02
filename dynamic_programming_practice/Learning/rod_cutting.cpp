@@ -1,55 +1,51 @@
+// You are given a rod of length n and cost selling each length from 
+// 1 to n . Your task is find the maximum profit you can make by 
+// partitioning and selling the rod.
 #include<iostream>
-#include<vector>
 #include<algorithm>
+#include<vector>
 #include<cstring>
+
 #define ll long long int 
 #define cinll(x) ll x;cin>>x;
-#define pb(x) push_back(x)
+#define pb(x) push_back(x);
 #define MAX 1e18
+
 using namespace std;
-//memoization top-down
-ll memo[10000];
-ll opp = 0;
-ll findans(vector<ll> &cost,ll totallen){
-    opp++;
-    if(totallen==0) return 0;
+
+//top - down using memoization 
+// time complexity brute force O(n^n);
+// time complexity dp O(n^2)
+ll memo[100000];
+ll solvememo(vector<ll> cost,ll len){
+    if(len<=0) return 0;
+    if(memo[len]!=-1) return memo[len];
     ll ans = 0;
-    if(memo[totallen]!=-1) return memo[totallen];
-    for(ll len=1;len<=totallen;len++){
-        ll profit  = cost[len] + findans(cost,totallen-len);
-        ans = max(ans,profit);
-    }
-    memo[totallen] = ans;
+    for(ll i = 1;i<=len;i++){
+        ans = max(ans,cost[i]+solvememo(cost,len-i));
+    }    
+    memo[len] = ans;
     return ans;
 }
-
-
-//bottom up approach
-ll findansdp(vector<ll> cost,ll n){
-    ll dp[100000];
+//bottom-up
+ll solvedp(vector<ll> cost,ll n){
+    ll dp[1005];
     memset(dp,0,sizeof(dp));
-    dp[1] = cost[1];
-   
-    for(ll i=2;i<=n;i++){
-        ll ans = 0;
-        for(ll j=1;j<=i;j++){
-            ans = max(ans,cost[j]+dp[i-j]);
+    for(ll len=1;len<=n;len++){
+        for(ll cut = 1;cut<=len;cut++){
+            dp[len] = max(dp[len],cost[cut] + dp[len-cut]);
         }
-        dp[i] = ans;
     }
     return dp[n];
 }
 
 int main(){
-    memset(memo,-1,sizeof(memo));
-    vector<ll> cost;
     cinll(n);
-    cost.pb(0);
-    for(ll i=0;i<n;i++){
-        cinll(c);
-        cost.pb(c);
+    memset(memo,-1,sizeof(memo));
+    vector<ll> cost;cost.pb(0);
+    for(ll i=1;i<=n;i++){
+        cinll(x);cost.pb(x);
     }
-    cout<<findansdp(cost,n)<<"\n";
-    cout<<findans(cost,n)<<" "<<opp;
+    cout<<solvememo(cost,n)<<" "<<solvedp(cost,n)<<"\n";
     return 0;
 }

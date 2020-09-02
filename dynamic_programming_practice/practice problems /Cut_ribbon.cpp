@@ -1,5 +1,5 @@
 /*
-  https://codeforces.com/contest/331/problem/C1
+    https://codeforces.com/problemset/problem/189/A
 	Solution by:- 
 	--------------Sannidhay Vashal
 	----------------NIT SRINAGAR
@@ -35,27 +35,41 @@
 
 using namespace std;
 
-ll dp[10000000];
-
-ll findansdp(ll n){
+//top- down memoized solution 
+ll memo[100000];
+ll opp = 0;
+ll solvememo(ll n,ll a,ll b,ll c){
+  opp++;
   if(n==0) return 0;
-  if(n<10) return 1;
-  ll ans = MAX;ll tmp = n;
-  if(dp[n]!=-1) return dp[n];
-  while(tmp>0){
-    ll digit = tmp%10;
-    tmp = tmp/10;
-    ll ansdigit = MAX;
-    if(digit!=0) ansdigit = 1 + findansdp(n-digit);
-    if(ansdigit<ans) ans = ansdigit;
+  if(n<0) return MIN;
+  if(memo[n]!=-1) return memo[n];
+  ll vala = 1 + solvememo(n-a,a,b,c);
+  ll valb = 1 + solvememo(n-b,a,b,c);
+  ll valc = 1 + solvememo(n-c,a,b,c);
+  memo[n] = max(vala,max(valb,valc));
+  return memo[n];
+}
+//bottom- up dp
+ll solvedp(ll n,ll a,ll b,ll c){
+  ll dp[100005];
+  for(ll i=0;i<=100005;i++) dp[i] = MIN;
+  dp[a] = 1;dp[b] = 1;dp[c] = 1;
+  for(ll i=1;i<=n;i++){
+    ll valprev = dp[i];
+    ll vala = MIN;ll valb = MIN;ll valc = MIN;
+    if(i-a>0) vala = 1 + dp[i-a];
+    if(i-b>0) valb = 1 + dp[i-b];
+    if(i-c>0) valc = 1 + dp[i-c];
+    dp[i] = max(valc,max(valb,max(valprev,vala)));
   }
-  dp[n] = ans;
-  return ans;
+  return dp[n];
 }
 
 int main(){
-  memset(dp,-1,sizeof(dp));
+  fio;
   cinll(n);
-  cout<<findansdp(n);
+  cinll(a);cinll(b);cinll(c);
+  memset(memo,-1,sizeof(memo));
+  cout<<solvedp(n,a,b,c);
   return 0;
 }

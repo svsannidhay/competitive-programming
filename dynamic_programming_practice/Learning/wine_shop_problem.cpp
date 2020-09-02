@@ -1,72 +1,72 @@
+/*
+    you are given the price of n wine bottles and cost of bottle 
+    increases to year no * initial cost 
+    you can sell bottle only from front and rear of the list
+    and in one year you can sell only one bottle per year 
+    Find the maximum profit you can make 
+    ex :- 
+    year 1 :-     1 4 2 3   sell 1 profit = 1
+    year 2 :-       8 4 6   sell 3 profit = 3.2
+    year 3 :-        12 6   sell 2 proft =   2.3
+    yer 4  :-        16     sell 4 proft = 4.4
+    => profit = 1 + 6 + 6 + 16 = 29
+
+
+*/
 #include<iostream>
 #include<vector>
 #include<algorithm>
 #include<cstring>
-#define ll long long int 
-#define pb(x) push_back(x) 
+
+#define ll long long int
 #define cinll(x) ll x;cin>>x;
+#define pb(x) push_back(x);
+
 using namespace std;
 
-//memoization (top - down)
-ll cnt = 0;
-ll memo[100][100];
-ll maxProfit(vector<ll> bottles,ll be,ll en,ll year){
-    cnt++;
-    if(be>en){
-        return 0;
-    }
-    if(memo[be][en] != -1){
-        return memo[be][en];
-    }
-    ll q1 = bottles[be] * year + maxProfit(bottles,be+1,en,year+1);
-    ll q2 = bottles[en] * year + maxProfit(bottles,be,en-1,year+1);
-    memo[be][en] = max(q1,q2);
-    return max(q1,q2);
+//memoization top-down dp
+//time complexity brute force O(2^n)
+//time complexity top-down O(n^2) 
+ll memo[1000][1000];     //n^2 dynamic states
+ll solvememo(vector<ll> &bottles,ll be,ll en,ll year){
+    if(be>en) return 0;
+    if(be==en){
+        memo[be][be] = year*bottles[be];
+        return memo[be][be];
+    }    
+    if(memo[be][en]!=-1) return memo[be][en];
+    ll start = year*bottles[be] + solvememo(bottles,be+1,en,year+1);
+    ll end = year*bottles[en] + solvememo(bottles,be,en-1,year+1);
+    memo[be][en] = max(start,end);
+    return memo[be][en];
 }
-
-//dp bottom up
-ll maxProfitdp(vector<ll> bottles,ll n){
-    ll dp[100][100];
+//bottom- up dp
+ll solvedp(vector<ll> bottles,ll n){
+    ll dp[1000][1000];
+    memset(dp,-1,sizeof(dp));
     ll year = n;
-    memset(dp,0,sizeof(dp));
-    for(ll i=0;i<n;i++){
-        dp[i][i] = year * bottles[i];
-    }
+    for(ll i=0;i<n;i++) dp[i][i] = year*bottles[i];
     year--;
-    for(ll len =2;len<=n;len++){
-        ll strt = 0;
-        ll end = n-len;
-        while(strt<=end){
-            ll endwindow = strt + len -1;
-            dp[strt][endwindow] = max(
-                (bottles[strt]*year + dp[strt+1][endwindow] ),
-                ( bottles[endwindow]*year + dp[strt][endwindow-1])
-            );
-            strt++;
+    for(ll len=2;len<=n;len++){
+        for(ll start = 0;start<=n-len;start++){
+            ll end = start + len - 1;
+            dp[start][end] = max(
+                (bottles[start]*year + dp[start+1][end]),
+                (dp[start][end-1] + bottles[end]*year)
+                );
         }
         year--;
     }
-
-    for(ll i=0;i<n;i++){
-        for(ll j=0;j<=n;j++){
-            cout<<dp[i][j]<<" ";  
-        }
-        cout<<"\n";
-    }
-    return dp[0][n-1];
+    return dp[0][n-1];   
 }
 
 int main(){
     cinll(n);
+    memset(memo,-1,sizeof(memo));
     vector<ll> bottles;
     for(ll i=0;i<n;i++){
-        cinll(prices);
-        bottles.pb(prices);
-    }
-    memset(memo,-1,sizeof(memo));
-    ll ans = maxProfit(bottles,0,n-1,1);
-    cout<<ans<<" "<<cnt; 
-    cout<<"DP \n"<<maxProfitdp(bottles,n);
+        cinll(x);bottles.pb(x);
+    } 
+    cout<<solvememo(bottles,0,n-1,1)<<"\n"<<solvedp(bottles,n)<<"\n";
     return 0;
 }
-
