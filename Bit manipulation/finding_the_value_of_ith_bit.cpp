@@ -2,30 +2,47 @@
 #include<vector>
 #include<algorithm>
 #include<cstring>
-
+#include<bitset>
 #define ll long long int 
 #define cinll(x); ll x;cin>>x;
 
 using namespace std;
 
+bool isOdd(ll n){
+    return (n&1);
+}
 ll getBit(ll n,ll i){
-    ll mask = 1<<i;
-    ll bit = 0;
-    if((n&mask)>0) bit = 1;
-    return bit;
+    return ((n&(1<<i))>0)?1:0;
+}
+ll setBit(ll n,ll i){
+    return (n|(1<<i));
+}
+void clearBit(ll &n,ll i){
+    ll mask = ~(1<<i);
+    n = (n&mask);
 }
 
-ll setBit(ll n,ll i){
-    ll mask = (1<<i);
-    ll ans = n|mask;
-    return ans;
+void updateBit(ll &n,ll i,ll v){
+    clearBit(n,i);
+    n = n | (v<<i);
+}
+void clearLastIBits(ll &n,ll i){
+    ll mask = (-1<<(i+1));
+    n = (n&mask);
+}
+
+void clearRangeIJ(ll &n,ll l,ll r){
+    ll mask1 = (-1<<(r+1));
+    ll mask2 = ((1<<l)-1);
+    ll mask = (mask2 | mask1);
+    n = (n & mask);
 }
 
 int main(){
     cinll(n);
     cinll(i);
-    //cout<<getBit(n,i);
-    n = setBit(n,i);
-    cout<<n;
-    return 0;
+    cinll(j);
+    clearRangeIJ(n,i,j);
+    cout<<n<<"\n";
+    return 0; 
 }
